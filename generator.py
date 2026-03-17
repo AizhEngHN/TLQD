@@ -3,7 +3,7 @@ from typing import List
 from aerialist.px4.drone_test import DroneTest
 from aerialist.px4.obstacle import Obstacle
 from testcase import TestCase
-from generator_our import Obstacle_our # 自己定义的障碍生成器
+#from generator_our import Obstacle_our # 自己定义的障碍生成器
 from read_ulg import read_ulg # 从 .ulg 日志中提取飞行轨迹（trajectory）
 import shutil
 import random
