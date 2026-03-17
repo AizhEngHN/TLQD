@@ -113,7 +113,11 @@ class AIGenerator(object):
     
         # 第一阶段 填满行为空间
         empty = Our_operator.find_empty_cells(Behavior_space)
-        while (len(empty) != 0):
+        max_attempts = 1000000  # 防止死循环，第一阶段不评估所以很快
+        attempt_count = 0
+        
+        while (len(empty) != 0 and attempt_count < max_attempts):
+            attempt_count += 1
             # 个体初始化
             population = Our_operator.initialize_population(pop_size, case)
             for i in range(pop_size):  # 对个体进行合法化
@@ -146,6 +150,10 @@ class AIGenerator(object):
 
         for i in range(num_B1):
             for j in range(num_B2):
+                # 跳过空格子
+                if len(Behavior_space[i][j]) == 0:
+                    continue
+                    
                 Dis = 99999
                 for k in range(len(Behavior_space[i][j])):
                     if Behavior_space[i][j][k]['BD'] < Dis:
@@ -157,13 +165,13 @@ class AIGenerator(object):
                 obstacle_list = []
 
                 for info in range(2):
-                    size = Obstacle.Size(l=Behavior_space[i][j][K]['individual'][info*5+2],
-                                         w=Behavior_space[i][j][K]['individual'][info*5+3],
+                    size = Obstacle.Size(l=float(Behavior_space[i][j][K]['individual'][info*5+2]),
+                                         w=float(Behavior_space[i][j][K]['individual'][info*5+3]),
                                          h=25)
-                    pos = Obstacle.Position(x=Behavior_space[i][j][K]['individual'][info*5],
-                                            y=Behavior_space[i][j][K]['individual'][info*5+1],
+                    pos = Obstacle.Position(x=float(Behavior_space[i][j][K]['individual'][info*5]),
+                                            y=float(Behavior_space[i][j][K]['individual'][info*5+1]),
                                             z=0,
-                                            r=Behavior_space[i][j][K]['individual'][info*5+4])
+                                            r=float(Behavior_space[i][j][K]['individual'][info*5+4]))
                     obstacle_list.append(Obstacle(size, pos))
 
                 test = TestCase(self.case_study, obstacle_list)
@@ -249,13 +257,13 @@ class AIGenerator(object):
                 # todo 评估
                 obstacle_list = []
                 for info in range(2):
-                    size = Obstacle.Size(l=combined_parents[i][info * 5 + 2],
-                                         w=combined_parents[i][info * 5 + 3],
+                    size = Obstacle.Size(l=float(combined_parents[i][info * 5 + 2]),
+                                         w=float(combined_parents[i][info * 5 + 3]),
                                          h=25)
-                    pos = Obstacle.Position(x=combined_parents[i][info * 5],
-                                            y=combined_parents[i][info * 5 + 1],
+                    pos = Obstacle.Position(x=float(combined_parents[i][info * 5]),
+                                            y=float(combined_parents[i][info * 5 + 1]),
                                             z=0,
-                                            r=combined_parents[i][info * 5 + 4])
+                                            r=float(combined_parents[i][info * 5 + 4]))
                     obstacle_list.append(Obstacle(size, pos))
 
                 test = TestCase(self.case_study, obstacle_list)
