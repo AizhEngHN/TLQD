@@ -26,7 +26,7 @@
 
 ## 环境要求
 
-- Python 3.8+
+- Python 3.8 ~ 3.11（Aerialist 要求 Python ≥ 3.8 且 < 3.12）
 - Docker（用于运行 PX4 仿真）
 - Aerialist 框架
 

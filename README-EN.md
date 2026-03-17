@@ -26,7 +26,7 @@ The project employs a three-phase search strategy:
 
 ## Requirements
 
-- Python 3.8+
+- Python 3.8 ~ 3.11 (Aerialist requires Python ≥ 3.8 and < 3.12)
 - Docker (for running PX4 simulation)
 - Aerialist framework
 

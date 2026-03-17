@@ -3,7 +3,7 @@ from typing import List
 from aerialist.px4.aerialist_test import AerialistTest
 from aerialist.px4.obstacle import Obstacle
 from testcase import TestCase
-#from generator_our import Obstacle_our # 自己定义的障碍生成器
+# from generator_our import Obstacle_our # 未使用，已注释
 from read_ulg import read_ulg # 从 .ulg 日志中提取飞行轨迹（trajectory）
 import shutil
 import random
@@ -66,8 +66,18 @@ def check_within_area(obstacles):
 class AIGenerator(object):
     def __init__(self, case_study_file: str) -> None:
         # 读取任务配置文件 .yaml
-        # 创建 DroneTest 对象，包含参数、起飞点、仿真设置等
-        self.case_study = DroneTest.from_yaml(case_study_file)
+        # 创建 AerialistTest 对象，包含参数、起飞点、仿真设置等
+        self.case_study = AerialistTest.from_yaml(case_study_file)
+        
+        # 根据输入文件名自动确定case
+        import re
+        match = re.search(r'mission(\d+)', case_study_file)
+        if match:
+            mission_num = int(match.group(1))
+            case_mapping = {1: 'case2', 2: 'case3', 3: 'case4', 4: 'case5', 5: 'case6', 6: 'case7', 7: 'case7'}
+            self.case_name = case_mapping.get(mission_num, 'case2')
+        else:
+            self.case_name = 'case2'  # 默认值
 
     def generate(self, Max_budget: int) -> List[TestCase]:
         # budget 是真实评估的次数。
@@ -80,7 +90,7 @@ class AIGenerator(object):
         # Max_budget = 200  # 总预算
         budget = 0  #
         Case = ['case2', 'case3', 'case4', 'case5', 'case6', 'case7']
-        case = Case[3] # mission1 =  case2
+        case = self.case_name  # 根据输入的mission文件自动确定
         B1_step = 15  # 15度为一个步长
         num_B1 = 6
         B2_step = 0.1  # 0.1度为一个步长
@@ -100,7 +110,7 @@ class AIGenerator(object):
             region = 0
         elif case == 'case7':
             region = 0.1
-
+    
         # 第一阶段 填满行为空间
         empty = Our_operator.find_empty_cells(Behavior_space)
         while (len(empty) != 0):
