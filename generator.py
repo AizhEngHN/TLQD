@@ -1,6 +1,6 @@
 import os
 from typing import List
-from aerialist.px4.drone_test import DroneTest
+from aerialist.px4.aerialist_test import AerialistTest
 from aerialist.px4.obstacle import Obstacle
 from testcase import TestCase
 #from generator_our import Obstacle_our # 自己定义的障碍生成器
