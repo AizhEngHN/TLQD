@@ -56,6 +56,10 @@ def config_loggers():
 
 if __name__ == "__main__":
     config_loggers()
+    
+    # 创建必需的目录
+    os.makedirs("results/logs/", exist_ok=True)
+    os.makedirs("results/ind/", exist_ok=True)
 
     args = arg_parse()
     generator = AIGenerator(case_study_file=args.test)
