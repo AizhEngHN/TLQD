@@ -113,7 +113,7 @@ class AIGenerator(object):
     
         # 第一阶段 填满行为空间
         empty = Our_operator.find_empty_cells(Behavior_space)
-        max_attempts = 1000000  # 防止死循环，第一阶段不评估所以很快
+        max_attempts = 10000  # 防止死循环，第一阶段不评估所以很快
         attempt_count = 0
         
         while (len(empty) != 0 and attempt_count < max_attempts):
