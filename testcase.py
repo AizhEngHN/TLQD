@@ -7,6 +7,7 @@ from aerialist.px4.docker_agent import DockerAgent
 from aerialist.px4.k8s_agent import K8sAgent
 from aerialist.px4.local_agent import LocalAgent
 from aerialist.px4.trajectory import Trajectory
+from aerialist.px4.plot import Plot
 from decouple import config
 
 AGENT = config("AGENT", default=AgentConfig.DOCKER)
@@ -27,9 +28,13 @@ class TestCase(object):
             agent = K8sAgent(self.test)
         logger.info("running the test...")
         self.test_results = agent.run()
-        # print(len(self.test_results))
-        # if len(self.test_results) == 0:
-        #     self.test_results = agent.run()
+        
+        # 调试信息
+        print(f"🧪 test_results type: {type(self.test_results)}")
+        print(f"🧪 test_results length: {len(self.test_results) if self.test_results else 0}")
+        if self.test_results:
+            print(f"🧪 test_results[0] type: {type(self.test_results[0])}")
+        
         if not self.test_results:
             logger.warning("❌ agent.run() returned no results after retry. Skipping this test.")
             self.trajectory = None
@@ -46,7 +51,7 @@ class TestCase(object):
         ]
 
     def plot(self):
-        self.plot_file = AerialistTest.plot(self.test, self.test_results)
+        self.plot_file = Plot.plot_test(self.test, self.test_results)
 
     def save_yaml(self, path):
         self.test.to_yaml(path)
