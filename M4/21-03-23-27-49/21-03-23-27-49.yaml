@@ -1,0 +1,68 @@
+agent:
+  engine: local
+  id: 21-03-23-27-49
+mission:
+  commands:
+  - mode: 3
+    r: 0
+    timestamp: 1
+    x: 0
+    y: 0
+    z: 0.5
+robot:
+  mission_file: /src/aerialist/results/mission4.plan
+  params:
+    MIS_TAKEOFF_ALT: 1.0
+    MIS_YAW_ERR: 12.0
+    MPC_YAW_MODE: 0
+    NAV_ACC_RAD: 0.5
+    NAV_DLL_ACT: 0
+    NAV_MC_ALT_RAD: 0.5
+    NAV_RCL_ACT: 3
+    SDLOG_PROFILE: 7
+  port: 14541
+simulation:
+  headless: true
+  obstacles:
+  - position:
+      r: 89.83762149587271
+      x: 23.169859656900336
+      y: 16.764450482658912
+      z: 0
+    shape: box
+    size:
+      h: 25
+      l: 16.086431734043245
+      r: 0
+      w: 18.74870017336861
+  - position:
+      r: 1.4822825674948392
+      x: 8.549288107064237
+      y: 26.81060692040611
+      z: 0
+    shape: box
+    size:
+      h: 25
+      l: 7.921704730744681
+      r: 0
+      w: 13.854689510216236
+  simulator: ros
+  wind:
+    direction:
+    - 1
+    - 0
+    - 0
+    direction_variance: 0
+    gust_direction:
+    - 0
+    - 0
+    - 0
+    gust_direction_variance: 0
+    gust_duration: 0
+    gust_start: 0
+    gust_velocity_max: 0
+    gust_velocity_mean: 0
+    gust_velocity_variance: 0
+    velocity_max: 10.0
+    velocity_mean: 8.0
+    velocity_variance: 0
