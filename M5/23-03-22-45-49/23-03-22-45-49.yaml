@@ -1,0 +1,49 @@
+agent:
+  engine: local
+  id: 23-03-22-45-49
+mission:
+  commands:
+  - mode: 3
+    r: 0
+    timestamp: 1
+    x: 0
+    y: 0
+    z: 0.5
+robot:
+  mission_file: /src/aerialist/results/mission5.plan
+  params:
+    MIS_TAKEOFF_ALT: 1.0
+    MIS_YAW_ERR: 12.0
+    MPC_YAW_MODE: 0
+    NAV_ACC_RAD: 0.5
+    NAV_DLL_ACT: 0
+    NAV_MC_ALT_RAD: 0.5
+    NAV_RCL_ACT: 3
+    SDLOG_PROFILE: 7
+  port: 14541
+simulation:
+  headless: true
+  obstacles:
+  - position:
+      r: 69.17692848827598
+      x: 6.546444652435943
+      y: 10.0
+      z: 0
+    shape: box
+    size:
+      h: 25
+      l: 12.607199654497204
+      r: 0
+      w: 18.303679562909892
+  - position:
+      r: 9.212270001954042
+      x: -33.68446692270725
+      y: 27.761898559078606
+      z: 0
+    shape: box
+    size:
+      h: 25
+      l: 5.8435833001061495
+      r: 0
+      w: 11.76510994513689
+  simulator: ros
