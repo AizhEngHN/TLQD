@@ -1,0 +1,49 @@
+agent:
+  engine: local
+  id: 24-03-11-48-22
+mission:
+  commands:
+  - mode: 3
+    r: 0
+    timestamp: 1
+    x: 0
+    y: 0
+    z: 0.5
+robot:
+  mission_file: /src/aerialist/results/mission_zigzag.plan
+  params:
+    MIS_TAKEOFF_ALT: 1.0
+    MIS_YAW_ERR: 12.0
+    MPC_YAW_MODE: 0
+    NAV_ACC_RAD: 0.5
+    NAV_DLL_ACT: 0
+    NAV_MC_ALT_RAD: 0.5
+    NAV_RCL_ACT: 3
+    SDLOG_PROFILE: 7
+  port: 14541
+simulation:
+  headless: true
+  obstacles:
+  - position:
+      r: 40.810373955214025
+      x: -12.562222095429393
+      y: 10.691119532468122
+      z: 0
+    shape: box
+    size:
+      h: 25
+      l: 6.120111600790931
+      r: 0
+      w: 13.144688251755818
+  - position:
+      r: 70.73415265707766
+      x: -6.272670705661819
+      y: 26.060669009649764
+      z: 0
+    shape: box
+    size:
+      h: 25
+      l: 10.18829781152061
+      r: 0
+      w: 12.91808832431967
+  simulator: ros
